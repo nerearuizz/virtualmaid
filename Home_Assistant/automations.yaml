@@ -1,0 +1,68 @@
+- id: '1680163266632'
+  alias: actualizacion hora
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_number.my_number
+  condition:
+  - condition: numeric_state
+    entity_id: input_number.my_number
+    below: 24
+  action:
+  - service: input_datetime.set_datetime
+    data:
+      entity_id: input_datetime.my_time
+      datetime: '{{ states("input_datetime.my_time")[:11] }}{{ "%02d:00:00" | format(states("input_number.my_number")
+        | int) }}'
+  mode: single
+- id: '1680163574652'
+  alias: tiempo
+  description: ''
+  trigger:
+  - platform: time
+    at: input_datetime.my_time
+  condition: []
+  action:
+  - service: notify.alexa_media_echo_plus_de_nerea
+    data:
+      message: ' Es la hora de activar tu electrodoméstico '
+  - service: ifttt.trigger
+    data:
+      event: enciende_enchufe
+  mode: single
+- id: '1680805395523'
+  alias: reinicio_variables
+  description: ''
+  trigger:
+  - platform: time
+    at: 00:00:00
+  condition: []
+  action:
+  - service: input_datetime.set_datetime
+    data:
+      datetime: '{{ now().strftime(''%Y-%m-%d %H:%M:%S'') }}'
+    target:
+      entity_id: input_datetime.my_time
+  - service: input_number.set_value
+    data:
+      value: 0
+    target:
+      entity_id: input_number.my_number
+  mode: single
+- id: '1680806634005'
+  alias: activa_ahora
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_number.my_number
+  condition:
+  - condition: numeric_state
+    entity_id: input_number.my_number
+    above: 24
+  action:
+  - service: ifttt.trigger
+    data:
+      event: enciende_enchufe
+  mode: single

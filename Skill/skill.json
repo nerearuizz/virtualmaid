@@ -1,0 +1,85 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "virtual version",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                },
+                {
+                    "name": "ActivaControl",
+                    "slots": [
+                        {
+                            "name": "Electrodomestico",
+                            "type": "Appliance"
+                        }
+                    ],
+                    "samples": [
+                        "quiero encender la {Electrodomestico}",
+                        "el {Electrodomestico}",
+                        "la {Electrodomestico}"
+                    ]
+                },
+                {
+                    "name": "AMAZON.YesIntent",
+                    "samples": [
+                        "a la hora mas barata",
+                        "si"
+                    ]
+                },
+                {
+                    "name": "AMAZON.NoIntent",
+                    "samples": [
+                        "prefiero ahora",
+                        "ahora",
+                        "no"
+                    ]
+                }
+            ],
+            "types": [
+                {
+                    "name": "Appliance",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "lavavajillas"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "aspiradora"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "horno"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "lavadora"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}
